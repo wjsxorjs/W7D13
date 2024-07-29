@@ -7,7 +7,7 @@
     
 	<resultMap id="map1" type="com.sist.app.vo.BbsVO">
 		<id column="b_idx" property="b_idx" />
-	    <collection property="c_list" select="commList" column="b_idx" ofType="com.sist.app.vo.CommVO" />
+	    <collection property="c_list" select="com.sist.app.mapper.CommMapper.commList" column="b_idx" ofType="com.sist.app.vo.CommVO" />
 	</resultMap>
 
     <!-- 총 게시물의 수를 반환 -->
@@ -27,7 +27,7 @@
     </select>
 
     <!-- 게시물 목록 반환 -->
-    <select id="list" parameterType="Map" resultMap="map1">
+    <select id="bbsList" parameterType="Map" resultMap="map1">
         SELECT *
         FROM (
             SELECT @RN:=@RN+1 AS rnum, a.*
@@ -50,14 +50,5 @@
         WHERE c.rnum BETWEEN #{begin} AND #{end}
         
     </select>
-
-    <!-- b_idx를 인자로 받아서
-    해당 b_idx를 참조하는 댓글들을 반환하는 select문 -->
-    <select id="commList" resultType="com.sist.app.vo.CommVO" parameterType="String">
-        SELECT *
-        FROM `comment_t`
-        WHERE b_idx = #{b_idx}
-    </select>
-
 
 </mapper>
