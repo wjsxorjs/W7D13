@@ -33,4 +33,8 @@ public class BbsService {
     };
 
 
+    public int add(BbsVO bvo){
+        return b_mapper.add(bvo);
+    }
+
 }

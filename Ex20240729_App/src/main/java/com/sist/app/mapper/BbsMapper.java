@@ -13,4 +13,5 @@ public interface BbsMapper {
 
     List<BbsVO> bbsList(String bname, String searchType, String searchValue, int begin, int end);
 
+    int add(BbsVO bvo);
 }
